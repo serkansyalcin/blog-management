@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog Management system
+{% endblock %}
+
+{% block body %}
+	<div class="container-padding">
+		<div class="row">
+			{% block flash_messages %}
+				{% for type, messages in app.session.flashbag.all() %}
+					{% for message in messages %}
+						<div class="alert alert-{{ type }} alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							{{ message | raw }}
+						</div>
+					{% endfor %}
+				{% endfor %}
+			{% endblock %}
+			<div class="panel panel-default">
+				<div class="row">
+					<div class="col-md-6 panel-title" id="tblTitle">
+						{{ title|trans }}
+					</div>
+					<div class="col-md-6 btn-right-clm">
+						{% if route is defined %}
+							<div class="right">
+								<div class="btn-group" role="group" aria-label="...">
+									<a href="{{ path(route.add) }}" class="btn btn-success">
+										<i class="fa fa-plus"></i>Add New</a>
+								</div>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+				
+				{% if totalBlog is defined and totalBlog %}
+					<div>
+						<b>Total Blogs</b>:
+						{{ totalBlog }}
+					</div><br/>
+				{% endif %}
+
+				<div class="panel-body table-responsive">
+					{{ sg_datatables_render(datatable) }}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

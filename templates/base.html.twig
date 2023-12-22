@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			{{ encore_entry_link_tags('blogStyle') }}
+		{% endblock %}
+
+		{% block javascripts %} 
+			 <script src="{{ asset('js/jquery.min.js') }}"></script>
+			 <script src="{{ asset('js/moment.min.js') }}"></script>
+			 <script src="{{ asset('js/daterangepicker.js') }}"></script>
+			 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+			 <script src="{{ asset('js/plugins.js') }}"></script>
+			 <script src="{{ asset('js/bootstrap-select.js') }}"></script>
+			 <script src="{{ asset('js/bootstrap-toggle.min.js') }}"></script>
+			 <script src="{{ asset('js/wysihtml5-0.3.0.min.js') }}"></script>
+			 <script src="{{ asset('js/bootstrap-wysihtml5.js') }}"></script>
+			 <script src="{{ asset('js/custom.js') }}"></script>
+			 <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+			 <script src="{{ asset('js/bootstrap-multiselect.js') }}"></script>
+			 <script src="{{ asset('js/datatables.min.js') }}"></script>
+			 <script src="{{ asset('bundles/sgdatatables/js/pipeline.js') }}"></script>
+			 <script src="{{ asset('js/bootstrap-editable.min.js') }}"></script>
+			 <script src="{{ asset('js/picker.js') }}"></script>
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}{% endblock %}
+	</body>
+</html>
