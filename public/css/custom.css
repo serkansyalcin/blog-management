@@ -240,7 +240,7 @@ input[type="checkbox"] {
 }
 
 fieldset.form-group legend {
-    display: none;
+    display: block;
 }
 
 .ui-sortable-handle {

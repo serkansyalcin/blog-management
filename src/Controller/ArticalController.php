@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Datatables\ArticalDatatable;
 use App\Entity\Artical;
+use App\Form\ArticalAddType;
 use Sg\DatatablesBundle\Datatable\DatatableFactory;
 use Sg\DatatablesBundle\Response\DatatableResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -86,11 +87,53 @@ class ArticalController extends AbstractController
     #[Route('add_blog', name: 'blog_add')]
     public function addBlog(Request $request): Response
     {
+        $artical = new Artical();
+        $form    = $this->createForm(ArticalAddType::class, $artical);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->em->persist($artical);
+                $this->em->flush();
+                $this->addFlash('success', 'Artical added successfully.');
+
+                return $this->redirectToRoute('app_artical');
+            } catch (Exception $e) {
+                $this->addFlash('danger', $e->getMessage());
+            }
+        }
+
+        return $this->render('artical/add_blog.html.twig', [
+            'form'  => $form->createView(),
+            'title' => 'Add new blog',
+        ]);
+
     }
 
     #[Route('blog/{id}', name: 'blog_edit')]
     public function updateUser(Request $request, Artical $artical): Response
     {
+        $editForm       = $this->createForm(ArticalAddType::class, $artical);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            try {
+                $this->em->persist($artical);
+                $this->em->flush();
+                $this->addFlash('success', 'Record updated successfully');
+                return $this->redirectToRoute('app_artical');
+            } catch (Exception $e) {
+                $this->addFlash('danger', $e->getMessage());
+            }
+        }
+
+        return $this->render('artical/edit.html.twig', [
+            'form'            => $editForm->createView(),
+            'title'           => 'Update Blog',
+            'route'           => [
+            'list'            => 'app_artical',
+            ],
+        ]);
         
     }
 }

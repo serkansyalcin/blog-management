@@ -6,8 +6,12 @@ use App\Repository\ArticalRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Serializer\Annotation\Ignore;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: ArticalRepository::class)]
+#[Vich\Uploadable]
 class Artical
 {
     public const _ACTIVE             = true;
@@ -21,10 +25,19 @@ class Artical
     private ?int $id = null;
 
     #[ORM\Column(length: 150, nullable: true)]
+    #[Assert\NotBlank(message: 'Title should not be blank')]
     private ?string $blogTitle = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $blogContent = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $blogImage = null;
+
+    #[Assert\File(maxSize: "2M", mimeTypes: ["image/jpeg", "image/png"], maxSizeMessage: 'Image Size should not greater then 2 MB', mimeTypesMessage: "Image Type Should JPG Or PNG")]
+    #[Vich\UploadableField(mapping: "blog_image", fileNameProperty: "blogImage")]
+    #[Ignore]
+    private $imageFile;
 
     #[ORM\Column(nullable: true, options: ["default" => 1])]
     private ?bool $blogStatus = self::_ACTIVE;
@@ -78,6 +91,44 @@ class Artical
         return $this;
     }
 
+    /**
+     * @param File|null $image
+     *
+     * @throws \Exception
+     */
+    public function setImageFile(File $image = null): void
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'dateUpdated' is not defined in your entity, use another property
+            $this->dateModified = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function getBlogImage(): ?string
+    {
+        return $this->blogImage;
+    }
+
+    public function setBlogImage(?string $blogImage): self
+    {
+        $this->blogImage = $blogImage;
+
+        return $this;
+    }
+    
     public function getAuthorName(): ?string
     {
         return $this->authorName;
