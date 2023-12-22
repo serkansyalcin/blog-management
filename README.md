@@ -25,3 +25,27 @@ aşağıda versiyonları ile belirtilmiştir.
 + sensio/framework-extra-bundle 
 + vich/uploader-bundle 
 + symfony/maker-bundle
+
+
+## KURULUM AŞAMALARI
+***
+#### Adım 1- Repoyu yerel sisteminize klonlayın. Aşağıdaki komut ile:
+* git clone git@github.com:serkansyalcin/blog-management.git cd blog-management
+
+#### Adım 2 - Composer Paketlerinin Kurulumu
+ * composer inistall
+#### Adım 3 - NODE JS Paketleri kurulumu
+* npm install
+#### Adım 4 - Assets Oluşturun
+* npm run build
+* php bin/console assets:install public
+#### Adım 5- ENV ve Veritabanı Kurulumu
+mysql'de "BlogManagement" adıyla yeni bir veritabanı oluşturun ve güncelleyin
+.env dosya yapılandırması.
+Veritabanı tablolarını oluşturmak için aşağıdaki komutu kullanın.
+* php bin/console d:s:u –force
+#### Adım - 6 Tarayıcıda yerel olarak uygulamayı çalıştırmak için:
+* symfony serve
+* sistemi tarayıcıda URI ile açmak için https://127.0.0.1:8000/
+#### Adım 7 - Canlı ortamda sunucuya dağıtmak için:
+* Sunucu virtual host yolunuzu public/index.php adresine yönlendirin.
