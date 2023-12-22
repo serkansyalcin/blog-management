@@ -22,3 +22,17 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+  
+  # Datatables
+    Sg\DatatablesBundle\Datatable\DatatableFactory:
+        alias: sg_datatables.factory
+    Sg\DatatablesBundle\Response\DatatableResponse:
+        alias: sg_datatables.response
+    Sg\DatatablesBundle\Controller\DatatableController:
+        calls: [["setContainer", ['@Psr\Container\ContainerInterface']]]
+    
+    App\EventListener\ProjectListener:
+        arguments: ["@security.token_storage"]
+        tags:
+        - { name: doctrine.event_listener, event: prePersist }
+        - { name: doctrine.event_listener, event: preUpdate }

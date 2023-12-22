@@ -1,0 +1,97 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+  form_themes:
+    - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
+fos_ck_editor:
+  configs:
+    my_config_1:
+      toolbar: "my_toolbar_1"
+
+  toolbars:
+    configs:
+      my_toolbar_1:
+        - {
+            name: "clipboard",
+            items:
+              [
+                "Cut",
+                "Copy",
+                "Paste",
+                "PasteText",
+                "PasteFromWord",
+                "-",
+                "Undo",
+                "Redo",
+              ],
+          }
+        - { name: "editing", items: ["Find", "Replace", "-", "SelectAll"] }
+        - {
+            name: "forms",
+            items:
+              [
+                "Form",
+                "Checkbox",
+                "Radio",
+                "TextField",
+                "Textarea",
+                "Select",
+                "Button",
+                "ImageButton",
+                "HiddenField",
+              ],
+          }
+        - {
+            name: "basicstyles",
+            items:
+              [
+                "Bold",
+                "Italic",
+                "Underline",
+                "Strike",
+                "Subscript",
+                "Superscript",
+                "-",
+                "RemoveFormat",
+              ],
+          }
+        - {
+            name: "paragraph",
+            items:
+              [
+                "NumberedList",
+                "BulletedList",
+                "-",
+                "Outdent",
+                "Indent",
+                "-",
+                "Blockquote",
+                "CreateDiv",
+                "-",
+                "JustifyLeft",
+                "JustifyCenter",
+                "JustifyRight",
+                "JustifyBlock",
+              ],
+          }
+        - { name: "links", items: ["Link", "Unlink", "Anchor"] }
+        - {
+            name: "insert",
+            items:
+              [
+                "Image",
+                "Flash",
+                "Table",
+                "HorizontalRule",
+                "Smiley",
+                "SpecialChar",
+                "PageBreak",
+              ],
+          }
+        - { name: "styles", items: ["Font", "FontSize"] }
+        - { name: "colors", items: ["TextColor", "BGColor"] }
+        - { name: "tools", items: ["Maximize", "ShowBlocks"] }
+        - { name: "others", items: ["-"] }
+        - { name: "blockstyles", items: ["Custom Block Style", "Another Custom Block Style"] }
+        - { name: "customparagraph", items: ["Custom Paragraph Format"] }
+
