@@ -5,13 +5,13 @@
 Bunların bilgisayarınızda (sunucunuzda) yüklü olması gerekir. Eğer yüklü değilse gerekli paketleri yükleyin
 aşağıda versiyonları ile belirtilmiştir.
 ### SİSTEM GEREKSİNİMLERİ
-PHP : >= 7.2.5 
-PHP Extentions : Curl,ZIP,XML, mbstring,mysql,fpm
-Apache : 2.4.52 Veya Nginix : >= 1.x 
-Database : MySQL >= 5.7.* 
-NPM : 9.6.7 NODE : >=18.* 
-Composer : 2 
-Symfony CLI : https://symfony.com/download
++ PHP : >= 7.2.5 
++ PHP Extentions : Curl,ZIP,XML, mbstring,mysql,fpm
++ Apache : 2.4.52 Veya Nginix : >= 1.x 
++ Database : MySQL >= 5.7.* 
++ NPM : 9.6.7 NODE : >=18.* 
++ Composer : 2 +
++ Symfony CLI : https://symfony.com/download
 
 ### KULLANILAN COMPOSER PAKETLERİ LISTESİ
 ********************************
